@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     tools {
-        maven 'Maven3'
+        maven 'Maven-3.9 (or anything you want)'
         jdk 'JDK17'
     }
 
@@ -11,6 +11,7 @@ pipeline {
     }
 
     stages {
+
         stage('Checkout') {
             steps {
                 git branch: 'main',
@@ -21,7 +22,10 @@ pipeline {
 
         stage('Build Spring Boot') {
             steps {
-                sh 'mvn clean package -DskipTests'
+                sh '''
+                    cd HospitalManagement
+                    mvn clean package -DskipTests
+                '''
             }
         }
 
